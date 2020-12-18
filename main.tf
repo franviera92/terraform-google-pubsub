@@ -162,6 +162,11 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     "filter",
     null,
   )
+  retain_acked_messages = lookup(
+    var.pull_subscriptions[count.index],
+    "retain_acked_messages",
+    false,
+  )
   ack_deadline_seconds = lookup(
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
